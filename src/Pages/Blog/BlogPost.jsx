@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Blog = () => {
+const BlogPost = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 9 ;
@@ -61,5 +61,5 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default BlogPost;
 
