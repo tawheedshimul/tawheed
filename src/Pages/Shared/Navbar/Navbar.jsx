@@ -142,7 +142,7 @@ const Navbar = () => {
                                 </Link>
                             </li>
                         </ul>
-                        <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" className="backdrop-blur-lg opacity-50 "  alt="Coding GIF" />
+                        {/* <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" className="backdrop-blur-lg opacity-50 "  alt="Coding GIF" /> */}
                     </motion.div>
                 )}
             </AnimatePresence>
