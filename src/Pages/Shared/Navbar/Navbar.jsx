@@ -9,7 +9,7 @@ const Navbar = () => {
     const location = useLocation();
 
     return (
-        <nav className=" p-4 ">
+        <nav className=" p-4 backdrop-blur-lg bg-[#151515] bg-opacity-50">
             <div className="flex justify-between items-center max-w-screen-xl mx-auto">
                 <div className="text-white text-2xl font-bold text-gradient">Tawheed</div>
 

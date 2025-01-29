@@ -1,13 +1,19 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, ScrollRestoration } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import BlogPost from "../Pages/Blog/BlogPost";
+import Contact from "../Pages/Contact/Contact";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main />, // Main layout
+    element: (
+      <>
+        <ScrollRestoration /> {/* Add this inside your layout component */}
+        <Main />
+      </>
+    ), // Main layout
     children: [
       {
         path: "/",
@@ -16,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <BlogPost />, // Home Page
+      },
+      {
+        path: "/contact",
+        element: <Contact />, // Home Page
       },
       
     ],

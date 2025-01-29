@@ -6,7 +6,9 @@ import Footer from '../Pages/Shared/Footer/Footer';
 const Main = () => {
     return (
         <div>
-            <Navbar />
+            <div className='sticky top-0 z-30'>
+                <Navbar />
+            </div>
 
             <Outlet />
 
