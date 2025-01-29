@@ -30,12 +30,22 @@ const Blog = () => {
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    // Function to highlight matched text in title
+    const highlightText = (text, term) => {
+        const parts = text.split(new RegExp(`(${term})`, 'gi')); // Split text into parts based on the search term
+        return parts.map((part, index) => 
+            part.toLowerCase() === term.toLowerCase() 
+                ? <span key={index} className="text-red-500">{part}</span> 
+                : part
+        );
+    };
+
     return (
         <div className='flex items-start h-[calc(100vh-117px)] bg-[#121212]'>
             {/* Left Section with Scroll */}
             <div className='w-3/12 h-[calc(100vh-117px)] bg-[#1a1a1a] overflow-y-auto p-4'>
                 {/* Search Box */}
-                <div className='mb-4'>
+                <div className='mb-4 sticky top-0'>
                     <input
                         type="text"
                         placeholder="Search content..."
@@ -52,7 +62,7 @@ const Blog = () => {
                         className={`cursor-pointer text-white mb-4 hover:text-teal-500 transition-all ${selectedContent === post.id ? 'bg-[#333333] rounded p-2 text-emerald-500' : ''}`} 
                         onClick={() => handleClick(post.id)} // Set selected content by post ID
                     >
-                        {post.title}
+                        {highlightText(post.title, searchTerm)}
                     </div>
                 ))}
             </div>
