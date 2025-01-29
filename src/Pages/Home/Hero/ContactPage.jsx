@@ -2,12 +2,12 @@ import React from "react";
 
 const ContactPage = () => {
   return (
-    <section className="bg-gray-900 text-white min-h-screen flex items-center justify-center px-6">
+    <section className="flex items-center justify-center px-6 py-8 border-dashed border-gray-800 border-2">
       <div className=" mx-auto w-full shadow-lg rounded-lg">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-teal-600 mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gradient  mb-6">
           Get in Touch
         </h2>
-        <p className="text-center text-gray-600 mb-10">
+        <p className="text-center text-gradient mb-10">
           I'd love to hear from you! Feel free to reach out with any questions or project inquiries.
         </p>
 
@@ -75,8 +75,8 @@ const ContactPage = () => {
         {/* Contact Info */}
         <div className="mt-12 text-center">
           <p className="text-gray-600">Or reach me at:</p>
-          <p className="text-teal-500 font-medium">email@example.com</p>
-          <p className="text-gray-600">+123 456 7890</p>
+          <p className="text-teal-500 font-medium">tawheedshimul@gmail.com</p>
+          <p className="text-gray-600">+9901811-861331</p>
         </div>
       </div>
     </section>

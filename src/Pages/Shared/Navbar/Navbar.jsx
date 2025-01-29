@@ -9,9 +9,9 @@ const Navbar = () => {
     const location = useLocation();
 
     return (
-        <nav className="bg-gray-900 p-4">
+        <nav className=" p-4 ">
             <div className="flex justify-between items-center max-w-screen-xl mx-auto">
-                <div className="text-white text-2xl font-bold">Tawheed</div>
+                <div className="text-white text-2xl font-bold text-gradient">Tawheed</div>
 
                 {/* Navigation Links (hidden on small screens, displayed on large) */}
                 <div>
