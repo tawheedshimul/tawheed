@@ -85,7 +85,7 @@ const ContactPage = () => {
           ></textarea>
           <button
             type="submit"
-            className="bg-teal-500 hover:bg-teal-600 text-white font-medium px-6 py-3 rounded-lg shadow-md transition-all"
+            className="bg-teal-500 w-full hover:bg-teal-600 text-white font-medium px-6 py-3 rounded-lg shadow-md transition-all"
             disabled={loading}
           >
             {loading ? "Sending..." : "Send Message"}
