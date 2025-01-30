@@ -1,7 +1,6 @@
 import React from 'react';
 
 import SkillsGrid from '../SkillGrid/SkillGrid';
-import ContactPage from '../../Contact/ContactPage';
 import MyCarousel from '../Carousel/MyCarousel';
 
 const Home = () => {
@@ -9,7 +8,7 @@ const Home = () => {
         <div>
             <MyCarousel />
             <SkillsGrid />
-            <ContactPage />
+            
         </div>
     );
 };
