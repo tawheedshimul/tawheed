@@ -15,7 +15,7 @@ const ContactPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:7000/api/sendEmail", {
+      const response = await fetch("https://blog-server-ten-sand.vercel.app/api/sendEmail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
