@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DOMPurify from 'dompurify'; // For sanitizing HTML content
+import Loading from '../../utilities/Loading';
 
 const Blog = () => {
     const [selectedContent, setSelectedContent] = useState('');
     const [data, setData] = useState([]);  // State to store fetched API data
     const [searchTerm, setSearchTerm] = useState('');  // State to store search term
+    const [isLoading, setIsLoading] = useState(true);  // State to manage loading status
 
     // Fetch data from JSON API
     useEffect(() => {
@@ -22,6 +24,8 @@ const Blog = () => {
                 setData(normalizedData);  // Store normalized API data
             } catch (error) {
                 console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);  // Set loading to false once data is fetched or if there's an error
             }
         };
 
@@ -42,9 +46,9 @@ const Blog = () => {
     const highlightText = (text, term) => {
         if (!term) return text;
         const parts = text.split(new RegExp(`(${term})`, 'gi')); // Split text into parts based on the search term
-        return parts.map((part, index) => 
-            part.toLowerCase() === term.toLowerCase() 
-                ? <span key={index} className="text-red-500">{part}</span> 
+        return parts.map((part, index) =>
+            part.toLowerCase() === term.toLowerCase()
+                ? <span key={index} className="text-red-500">{part}</span>
                 : part
         );
     };
@@ -70,18 +74,23 @@ const Blog = () => {
                     />
                 </div>
 
-                {/* List of Content */}
-                {filteredData.map((post) => (
-                    <div
-                        key={post.id}
-                        className={`cursor-pointer text-white mb-4 hover:text-teal-500 transition-all ${selectedContent === post.id ? 'bg-[#333333] rounded p-2 text-emerald-500' : ''}`} 
-                        onClick={() => handleClick(post.id)} // Set selected content by post ID
-                    >
-                        {/* Display postNo alongside the title */}
-                        <span className="text-gray-400 mr-2">{post.postNo}</span>
-                        {highlightText(post.title, searchTerm)}
-                    </div>
-                ))}
+                {/* Loading State */}
+                {isLoading ? (
+                    <Loading />
+                ) : (
+                    /* List of Content */
+                    filteredData.map((post) => (
+                        <div
+                            key={post.id}
+                            className={`cursor-pointer text-white mb-4 hover:text-teal-500 transition-all ${selectedContent === post.id ? 'bg-[#333333] rounded p-2 text-emerald-500' : ''}`}
+                            onClick={() => handleClick(post.id)} // Set selected content by post ID
+                        >
+                            {/* Display postNo alongside the title */}
+                            <span className="text-gray-400 mr-2">{post.postNo}</span>
+                            {highlightText(post.title, searchTerm)}
+                        </div>
+                    ))
+                )}
             </div>
 
             {/* Right Section */}
@@ -99,7 +108,7 @@ const Blog = () => {
                                             {post.title}
                                         </h2>
                                         {/* Render rich text content */}
-                                        <div 
+                                        <div
                                             className='text-white '
                                             dangerouslySetInnerHTML={renderHTML(post.body)} // Safely render HTML
                                         />

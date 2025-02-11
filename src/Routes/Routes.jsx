@@ -6,7 +6,9 @@ import Contact from "../Pages/Contact/Contact";
 import AdminPanel from "../AdminPannelPages/AdminPannel";
 import EditPost from "../AdminPannelPages/EditPost";
 import PostForm from "../AdminPannelPages/PostForm";
-
+import DynamicHead from "../utilities/DynamicHead";
+import Product from "../Pages/Product/Product";
+// Import the DynamicHead component
 
 export const router = createBrowserRouter([
   {
@@ -20,31 +22,67 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />, // Home Page
+        element: (
+          <>
+            <DynamicHead title="Home Page" faviconUrl="/home-favicon.ico" />
+            <Home />
+          </>
+        ), // Home Page
       },
       {
         path: "/blog",
-        element: <Blog />, // Home Page
+        element: (
+          <>
+            <DynamicHead title="Blog Page" faviconUrl="/blog-favicon.ico" />
+            <Blog />
+          </>
+        ), // Blog Page
       },
       {
         path: "/contact",
-        element: <Contact />, // Home Page
+        element: (
+          <>
+            <DynamicHead title="Contact Page" faviconUrl="/contact-favicon.ico" />
+            <Contact />
+          </>
+        ), // Contact Page
+      },
+      {
+        path: "/product",
+        element: (
+          <>
+            <DynamicHead title="Product Page" faviconUrl="/contact-favicon.ico" />
+            <Product />
+          </>
+        ), // Contact Page
       },
       {
         path: "/post",
-        element: <PostForm />, // Home Page
+        element: (
+          <>
+            <DynamicHead title="Post Form" faviconUrl="/post-favicon.ico" />
+            <PostForm />
+          </>
+        ), // Post Form Page
       },
       {
         path: "/adminpannel",
-        element: <AdminPanel />, // Home Page
+        element: (
+          <>
+            <DynamicHead title="Admin Panel" faviconUrl="/admin-favicon.ico" />
+            <AdminPanel />
+          </>
+        ), // Admin Panel Page
       },
       {
         path: "/edit-post/:postId",
-        element: <EditPost />, // Home Page
+        element: (
+          <>
+            <DynamicHead title="Edit Post" faviconUrl="/edit-favicon.ico" />
+            <EditPost />
+          </>
+        ), // Edit Post Page
       },
-
-      // /
-      
     ],
   },
 ]);

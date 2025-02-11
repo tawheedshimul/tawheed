@@ -1,13 +1,15 @@
 import { FaHtml5, FaCss3Alt, FaBootstrap, FaReact, FaFire, FaDatabase } from "react-icons/fa";
+import { RiJavascriptFill } from "react-icons/ri";
 
 const skills = [
-  { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
+  { name: "HTML", icon: <FaHtml5 className="text-orange-500 " /> },
   { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
   { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600" /> },
   { name: "Tailwind CSS", icon: <FaCss3Alt className="text-teal-500" /> },
   { name: "React", icon: <FaReact className="text-blue-400" /> },
   { name: "Firebase", icon: <FaFire className="text-yellow-500" /> },
-  { name: "MongoDB", icon: <FaDatabase className="text-green-500" /> }
+  { name: "MongoDB", icon: <FaDatabase className="text-green-500" /> },
+  { name: "JavaScript", icon: <RiJavascriptFill className="text-green-500" /> },
 ];
 
 const SkillsGrid = () => {
@@ -18,10 +20,10 @@ const SkillsGrid = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-all duration-300"
+            className="flex flex-col cursor-pointer items-center justify-center shadow-md rounded-xl p-4 hover:shadow-lg transition-all duration-300"
           >
             <div className="text-5xl">{skill.icon}</div>
-            <p className="mt-2 text-gray-700 font-semibold">{skill.name}</p>
+            <p className="mt-2 text-gray-700 font-semibold text-gradient">{skill.name}</p>
           </div>
         ))}
       </div>
