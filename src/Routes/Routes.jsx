@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
         path: "/",
         element: (
           <>
-            <DynamicHead title="Home Page" faviconUrl="/home-favicon.ico" />
+            <DynamicHead title="Tawheed" faviconUrl="https://img.icons8.com/?size=80&id=OftIUKyv1EQY&format=png" />
             <Home />
           </>
         ), // Home Page
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
         path: "/blog",
         element: (
           <>
-            <DynamicHead title="Blog Page" faviconUrl="/blog-favicon.ico" />
+            <DynamicHead title="Blog Page" faviconUrl="https://cdn-icons-png.flaticon.com/128/4922/4922073.png" />
             <Blog />
           </>
         ), // Blog Page
@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
         path: "/contact",
         element: (
           <>
-            <DynamicHead title="Contact Page" faviconUrl="/contact-favicon.ico" />
+            <DynamicHead title="Contact Page" faviconUrl="https://cdn-icons-png.flaticon.com/128/10439/10439779.png" />
             <Contact />
           </>
         ), // Contact Page
@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
         path: "/product",
         element: (
           <>
-            <DynamicHead title="Product Page" faviconUrl="/contact-favicon.ico" />
+            <DynamicHead title="Product Page" faviconUrl="https://cdn-icons-png.flaticon.com/128/18776/18776217.png" />
             <Product />
           </>
         ), // Contact Page
