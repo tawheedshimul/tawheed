@@ -7,7 +7,7 @@ const ProfileSection = () => {
     return (
         <section className="relative pt-[230px] pb-24">
             {/* Background Image */}
-            <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" className="backdrop-blur-lg opacity-50 w-full absolute top-0 left-0 z-0 h-80 object-cover" alt="Coding GIF" />
+            <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" className="w-full absolute top-0 left-0 z-0 h-80 object-cover" alt="Coding GIF" />
             {/* <img
                 src="https://pagedone.io/asset/uploads/1705471739.png"
                 alt="cover-image"
@@ -32,7 +32,7 @@ const ProfileSection = () => {
     href="mailto:tawheedshimul@gmail.com" 
     className="flex items-center text-white hover:text-teal-600 transition duration-300"
   >
-    <MdEmail className="mt-0.5 mr-2 text-5xl bg-teal-400 rounded-full p-2" />
+    <MdEmail className="mt-0.5 mr-2 text-4xl bg-teal-400 rounded-full p-2" />
     <span className="cursor-pointer hover:underline ">tawheedshimul@gmail.com</span>
   </a>
 </div>
