@@ -1,55 +1,82 @@
-import React from 'react';
+const products = [
+  {
+    id: 1,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 1,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 1,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 1,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 1,
+    name: 'Basic Tee',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  // More products...
+]
 
-function Product() {
+export default function Product() {
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-        {/* Product Image */}
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-1/2">
-            <img
-              src="https://via.placeholder.com/500"
-              alt="Product"
-              className="rounded-lg"
-            />
-          </div>
+    <div className="bg-wh">
+      <div className="mx-auto  px-4  lg:max-w-8xl lg:px-">
+        <h2 className="text-2xl text-center font-bold tracking-tight text-gradient">Customers also purchased</h2>
 
-          {/* Product Details */}
-          <div className="w-full md:w-1/2">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              Product Name
-            </h1>
-            <p className="text-gray-600 mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-
-            {/* Price */}
-            <div className="flex items-center mb-6">
-              <span className="text-2xl font-bold text-gray-900">$99.99</span>
-              <span className="text-sm text-gray-500 line-through ml-2">$129.99</span>
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          {products.map((product) => (
+            <div key={product.id} className="group relative">
+              <img
+                alt={product.imageAlt}
+                src={product.imageSrc}
+                className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+              />
+              <div className="mt-4 flex justify-between">
+                <div>
+                  <h3 className="text-sm text-gray-700">
+                    <a href={product.href}>
+                      <span aria-hidden="true" className="absolute inset-0" />
+                      {product.name}
+                    </a>
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                </div>
+                <p className="text-sm font-medium text-gray-900">{product.price}</p>
+              </div>
             </div>
-
-            {/* Add to Cart Button */}
-            <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
-              Add to Cart
-            </button>
-
-            {/* Additional Info */}
-            <div className="mt-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Product Details
-              </h2>
-              <ul className="list-disc list-inside text-gray-600">
-                <li>High-quality material</li>
-                <li>Available in multiple colors</li>
-                <li>1-year warranty</li>
-              </ul>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
-  );
+  )
 }
-
-export default Product;
