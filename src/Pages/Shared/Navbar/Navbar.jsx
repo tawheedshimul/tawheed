@@ -68,19 +68,19 @@ const Navbar = () => {
 
                 {/* Hamburger Icon for Mobile */}
                 <div
-                    className="lg:hidden flex flex-col space-y-1 cursor-pointer z-50"
+                    className="lg:hidden flex flex-col space-y-[7px] cursor-pointer z-50"
                     onClick={() => setIsMobile(!isMobile)}
                 >
                     <span
-                        className={`w-6 h-1 bg-white transition-all ${isMobile ? "rotate-45 translate-y-2" : ""
+                        className={`w-8 h-[1px] bg-white transition-all ${isMobile ? "rotate-45 translate-y-2" : ""
                             }`}
                     ></span>
                     <span
-                        className={`w-6 h-1 bg-white transition-all ${isMobile ? "opacity-0" : ""
+                        className={`w-6 h-[1px] bg-white transition-all ${isMobile ? "opacity-0" : ""
                             }`}
                     ></span>
                     <span
-                        className={`w-6 h-1 bg-white transition-all ${isMobile ? "-rotate-45 -translate-y-2" : ""
+                        className={`w-8 h-[1px] bg-white transition-all ${isMobile ? "-rotate-45 -translate-y-2" : ""
                             }`}
                     ></span>
                 </div>
