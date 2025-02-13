@@ -8,11 +8,7 @@ const ProfileSection = () => {
         <section className="relative pt-[230px] pb-24">
             {/* Background Image */}
             <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" className="w-full absolute top-0 left-0 z-0 h-80 object-cover" alt="Coding GIF" />
-            {/* <img
-                src="https://pagedone.io/asset/uploads/1705471739.png"
-                alt="cover-image"
-                className="w-full absolute top-0 left-0 z-0 h-60 object-cover"
-            /> */}
+           
 
             {/* Content */}
             <div className="w-full mx-auto px-6 md:px-8">
@@ -40,9 +36,9 @@ const ProfileSection = () => {
 
                     {/* Buttons */}
                     <div className="flex items-center gap-4">
-                        <button className="rounded-full border border-solid border-gray-300 bg-gray-50 py-3 px-4 text-sm font-semibold text-gray-900 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-50 hover:bg-gray-100 hover:border-gray-300">
+                        {/* <button className="rounded-full border border-solid border-gray-300 bg-gray-50 py-3 px-4 text-sm font-semibold text-gray-900 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-50 hover:bg-gray-100 hover:border-gray-300">
                             Message
-                        </button>
+                        </button> */}
                         <button className="rounded-full  bg-teal-400 py-3 px-4 text-sm font-semibold text-white whitespace-nowrap shadow-sm shadow-transparent transition-all duration-2 hover:bg-teal-600">
                             Download CV
                         </button>
@@ -63,36 +59,20 @@ const ProfileSection = () => {
 
                 {/* Social Media Icons */}
                 <div className="flex items-center justify-center gap-5">
+                    
                     <a
-                        href="#google"
-                        className="p-3 rounded-full border border-solid border-gray-300 group bg-gray-50 transition-all duration-500 hover:bg-indigo-700 hover:border-indigo-700"
-                    >
-                        <FaInstagram className="text-blue-400 group-hover:text-white" />
-                    </a>
-                    <a
-                        href="#facebook"
-                        className="p-3 rounded-full border border-solid border-gray-300 bg-gray-50 group transition-all duration-500 hover:bg-indigo-700 hover:border-indigo-700"
+                        href="https://www.facebook.com/tawheedshimul"
+                        className="p-3 rounded-full border border-solid border-gray-300 bg-gray-50 group transition-all duration-500 hover:bg-teal-500"
                     >
                         <FaFacebook className="text-indigo-600 group-hover:text-white" />
                     </a>
                     <a
                         href="#instagram"
-                        className="p-3 rounded-full border border-solid border-gray-300 bg-gray-50 group transition-all duration-500 hover:bg-indigo-700 hover:border-indigo-700"
+                        className="p-3 rounded-full border border-solid border-gray-300 bg-gray-50 group transition-all duration-500 hover:bg-teal-500"
                     >
                         <FaInstagram className="text-red-600 group-hover:text-white" />
                     </a>
-                    <a
-                        href="#youtube"
-                        className="p-3 rounded-full border border-solid border-gray-300 group bg-gray-50 transition-all duration-500 hover:bg-indigo-700 hover:border-indigo-700"
-                    >
-                        <FaYoutube className="text-red-600 group-hover:text-white" />
-                    </a>
-                    <a
-                        href="#telegram"
-                        className="p-3 rounded-full border border-solid border-gray-300 group bg-gray-50 transition-all duration-500 hover:bg-indigo-700 hover:border-indigo-700"
-                    >
-                        <FaTelegramPlane className="text-blue-400 group-hover:text-white" />
-                    </a>
+                    
                 </div>
             </div>
         </section>
