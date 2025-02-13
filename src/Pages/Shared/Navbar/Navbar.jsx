@@ -28,7 +28,7 @@ const Navbar = () => {
     return (
         <nav className="p-4 backdrop-blur-lg bg-[#151515] bg-opacity-75  w-full z-50">
             <div className="flex justify-between items-center max-w-screen-xl mx-auto">
-                <div className="text-white text-2xl font-bold text-gradient">Tawheed</div>
+                <Link to="/" className="text-white text-2xl font-bold text-gradient">Tawheed</Link>
 
                 {/* Navigation Links */}
                 <div className="hidden lg:flex space-x-6 items-center text-white">
