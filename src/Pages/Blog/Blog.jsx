@@ -131,7 +131,7 @@ const Blog = () => {
                placement="right"
                onClose={() => setIsDrawerVisible(false)}
                visible={isDrawerVisible}
-               width="85%"
+               width="100%"
                className="bg-[#1a1a1a] text-white"
                headerStyle={{
                    backgroundColor: '#1a1a1a',
@@ -142,7 +142,7 @@ const Blog = () => {
                    backgroundColor: '#1a1a1a',
                    padding: '12px 0px',
                }}
-               closeIcon={<CloseOutlined style={{ color: 'white', fontSize: "25px", backgroundColor:"black", padding:"15px", zIndex:"1" }} />}
+               closeIcon={<CloseOutlined style={{ color: 'white', fontSize: "25px", backgroundColor:"black", padding:"10px", zIndex:"1" }} />}
            >
                {selectedContent && (
                    <div className='bg-[#1c1c1c] px-2 rounded-lg shadow-lg'>
