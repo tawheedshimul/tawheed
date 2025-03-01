@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import PostList from './PostList';
+import { List, Button, Modal, Spin, message } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+
+const { confirm } = Modal;
 
 const AdminPanel = () => {
   const [posts, setPosts] = useState([]);
-//   const [postToEdit, setPostToEdit] = useState(null);
-  const navigate = useNavigate(); // For navigation to the edit page
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Fetch all posts
   const fetchPosts = async () => {
@@ -15,6 +18,9 @@ const AdminPanel = () => {
       setPosts(response.data);
     } catch (error) {
       console.error('Error fetching posts:', error);
+      message.error('Failed to fetch posts');
+    } finally {
+      setLoading(false); // Stop loading whether successful or not
     }
   };
 
@@ -22,26 +28,62 @@ const AdminPanel = () => {
     fetchPosts();
   }, []);
 
-  // Delete a post
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`https://blog-server-ten-sand.vercel.app/posts/${id}`);
-      fetchPosts(); // Refresh the list
-    } catch (error) {
-      console.error('Error deleting post:', error);
-    }
+  // Delete a post with confirmation
+  const handleDelete = (id) => {
+    confirm({
+      title: 'Are you sure you want to delete this post?',
+      icon: <ExclamationCircleOutlined />,
+      content: 'This action cannot be undone.',
+      onOk: async () => {
+        try {
+          await axios.delete(`https://blog-server-ten-sand.vercel.app/posts/${id}`);
+          message.success('Post deleted successfully');
+          fetchPosts(); // Refresh the list
+        } catch (error) {
+          console.error('Error deleting post:', error);
+          message.error('Failed to delete post');
+        }
+      },
+      onCancel: () => {
+        console.log('Deletion canceled');
+      },
+    });
   };
 
   // Navigate to the edit page
   const handleEdit = (post) => {
-    navigate(`/edit-post/${post._id}`); // Navigate to the edit page
+    navigate(`/edit-post/${post._id}`);
   };
 
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Admin Panel</h1>
-      {/* <PostForm postToEdit={postToEdit} onSave={fetchPosts} /> */}
-      <PostList posts={posts} onEdit={handleEdit} onDelete={handleDelete} />
+    <div className='px-4'  style={{ backgroundColor: '#f0f2f5', minHeight: '100vh' }}>
+      <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '16px' }}>Admin Panel</h1>
+      {loading ? (
+        <div style={{ textAlign: 'center', marginTop: '20%' }}>
+          <Spin size="large" />
+        </div>
+      ) : (
+        <List
+          dataSource={posts}
+          renderItem={(post) => (
+            <List.Item
+              actions={[
+                <Button type="link" onClick={() => handleEdit(post)}>
+                  Edit
+                </Button>,
+                <Button type="link" danger onClick={() => handleDelete(post._id)}>
+                  Delete
+                </Button>,
+              ]}
+            >
+              <List.Item.Meta
+                title={post.title}
+                description={post.content}
+              />
+            </List.Item>
+          )}
+        />
+      )}
     </div>
   );
 };

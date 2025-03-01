@@ -1,85 +1,109 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Heart, MessageCircle } from "lucide-react"; // Import Lucide icons
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import DOMPurify from 'dompurify'; // For sanitizing HTML content
+import Loading from '../../utilities/Loading';
 
-const BlogPost = () => {
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 9;
+const Blogs = () => {
+    const [selectedContent, setSelectedContent] = useState('');
+    const [data, setData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch posts from API
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
-        setPosts(response.data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://portfolio-backend-six-xi.vercel.app/posts');
+                const normalizedData = response.data.map(post => ({
+                    id: post._id,
+                    title: post.title,
+                    body: post.content || post.body || '',
+                    postNo: post.postNo || ''
+                }));
+
+                // Sort the data by postNo
+                const sortedData = normalizedData.sort((a, b) => a.postNo - b.postNo);
+
+                setData(sortedData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleClick = (id) => {
+        setSelectedContent(id);
     };
-    fetchPosts();
-  }, []);
 
-  // Calculate pagination variables
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(posts.length / postsPerPage);
+    const filteredData = data.filter((post) =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-  return (
-    <div className="min-h-screen bg-gray-100 py-10">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-8">Blog Posts</h1>
-        
-        {/* Card Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {currentPosts.map((post) => (
-            <div
-              key={post.id}
-              className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between"
-            >
-              {/* Post Title */}
-              <h2 className="text-xl font-semibold mb-4 text-gray-900">{post.title}</h2>
-              
-              {/* Post Body */}
-              <p className="text-gray-600 line-clamp-4 mb-4">{post.body}</p>
+    const highlightText = (text, term) => {
+        if (!term) return text;
+        const parts = text.split(new RegExp(`(${term})`, 'gi'));
+        return parts.map((part, index) =>
+            part.toLowerCase() === term.toLowerCase() ?
+                <span key={index} className="text-red-500">{part}</span> :
+                part
+        );
+    };
 
-              {/* Action Icons */}
-              <div className="flex justify-between items-center text-gray-600">
-                <button className="flex items-center space-x-1 hover:text-teal-500 transition-all">
-                  <Heart size={20} />
-                  <span>Like</span>
-                </button>
-                <button className="flex items-center space-x-1 hover:text-teal-500 transition-all">
-                  <MessageCircle size={20} />
-                  <span>Comment</span>
-                </button>
-              </div>
+    const renderHTML = (html) => {
+        const sanitizedHTML = DOMPurify.sanitize(html);
+        return { __html: sanitizedHTML };
+    };
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-screen bg-[#121212]">
+                <Loading />
             </div>
-          ))}
-        </div>
+        );
+    }
 
-        {/* Pagination */}
-        <div className="flex justify-center items-center mt-8 space-x-4">
-          <button
-            className={`px-4 py-2 bg-blue-500 text-white rounded ${currentPage === 1 && "opacity-50 cursor-not-allowed"}`}
-            onClick={() => currentPage > 1 && setCurrentPage((prev) => prev - 1)}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-          <span className="text-lg">Page {currentPage} of {totalPages}</span>
-          <button
-            className={`px-4 py-2 bg-blue-500 text-white rounded ${currentPage === totalPages && "opacity-50 cursor-not-allowed"}`}
-            onClick={() => currentPage < totalPages && setCurrentPage((prev) => prev + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
+    return (
+        <div className='flex items-start h-[calc(100vh-117px)] bg-[#121212]'>
+            <div className='w-3/12 h-[calc(100vh-117px)] bg-[#1a1a1a] overflow-y-auto p-4'>
+                <div className='mb-4 sticky top-0'>
+                    <input
+                        type="text"
+                        placeholder="Search content..."
+                        className="w-full p-2 bg-[#2b2b2b] text-white rounded-lg focus:outline-none"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                {filteredData.map((post) => (
+                    <div
+                        key={post.id}
+                        className={`cursor-pointer text-white mb-4 hover:text-teal-500 transition-all ${selectedContent === post.id ? 'bg-[#333333] rounded p-2 text-emerald-500' : ''}`}
+                        onClick={() => handleClick(post.id)}
+                    >
+                        <span className="text-gray-400 mr-2">{post.postNo}</span>
+                        {highlightText(post.title, searchTerm)}
+                    </div>
+                ))}
+            </div>
+            <div className='w-9/12 p-4'>
+                <div className='bg-[#1c1c1c] p-6 rounded-lg shadow-lg overflow-y-auto h-[calc(100vh-150px)]'>
+                    {selectedContent ? (
+                        data.filter((post) => post.id === selectedContent).map((post) => (
+                            <div key={post.id}>
+                                <h2 className='text-2xl text-teal-500 font-semibold mb-4'>{post.title}</h2>
+                                <div className='text-white' dangerouslySetInnerHTML={renderHTML(post.body)} />
+                                <div className='mt-4 bg-teal-500 h-1 w-16'></div>
+                            </div>
+                        ))
+                    ) : (
+                        <p className='text-white'>Please select a content item on the left to view more details.</p>
+                    )}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default BlogPost;
+export default Blogs;

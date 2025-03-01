@@ -37,7 +37,7 @@ const EditPost = () => {
     const updatedPost = { title, body: sanitizedBody, postNo };
 
     try {
-      await axios.put(`https://blog-server-ten-sand.vercel.app/posts/${postId}`, updatedPost);
+      await axios.put(`https://portfolio-backend-six-xi.vercel.app/posts/${postId}`, updatedPost);
       alert('Post updated successfully!');
       navigate('/adminpannel'); // Redirect to the admin panel after saving
     } catch (error) {
