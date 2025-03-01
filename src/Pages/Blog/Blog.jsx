@@ -40,6 +40,30 @@ const Blog = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        if (isDrawerVisible) {
+            // Push a new state to the history when the drawer opens
+            window.history.pushState({ drawerOpen: true }, '');
+        }
+    }, [isDrawerVisible]);
+
+    useEffect(() => {
+        const handlePopState = (event) => {
+            if (isDrawerVisible) {
+                // Close the drawer when the back button is pressed
+                setIsDrawerVisible(false);
+                // Remove the history entry that was added when the drawer opened
+                window.history.back();
+            }
+        };
+
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, [isDrawerVisible]);
+
     const handleClick = (id) => {
         setSelectedContent(id);
         if (isMobile) {
