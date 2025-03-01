@@ -103,3 +103,22 @@
     background-color: transparent;
   }
 }
+
+
+.marquee {
+  white-space: nowrap;
+  padding-top:5px;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+      transform: translateX(100%);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}

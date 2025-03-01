@@ -4,6 +4,7 @@ import DOMPurify from 'dompurify'; // For sanitizing HTML content
 import { Drawer } from 'antd'; // Ant Design Drawer for mobile view
 import { useMediaQuery } from 'react-responsive'; // To detect screen size
 import Loading from '../../utilities/Loading';
+import { CloseOutlined } from '@ant-design/icons'; 
 
 const Blog = () => {
     const [selectedContent, setSelectedContent] = useState('');
@@ -117,35 +118,47 @@ const Blog = () => {
 
             {/* Drawer for Mobile View (only on screens smaller than lg) */}
             {isMobile && (
-                <Drawer
-                title="⇐ Back"
-                placement="right"
-                onClose={() => setIsDrawerVisible(false)}
-                visible={isDrawerVisible}
-                width="90%"
-                className="bg-[#1a1a1a] text-white" // Set background and text color
-                headerStyle={{
-                    backgroundColor: '#1a1a1a', // Dark background for header
-                    borderBottom: '1px solid #333', // Subtle border
-                    padding: '12px 0px', // Reduced padding
-                }}
-                bodyStyle={{
-                    backgroundColor: '#1a1a1a', // Dark background for body
-                    padding: '12px 0px', // Reduced padding
-                }}
-            >
-                {selectedContent && (
-                    <div className='bg-[#1c1c1c] p-4 rounded-lg shadow-lg'>
-                        {data.filter((post) => post.id === selectedContent).map((post) => (
-                            <div key={post.id}>
-                                <h2 className='text-2xl text-teal-500 font-semibold mb-4'>{post.title}</h2>
-                                <div className='text-white text-justify' dangerouslySetInnerHTML={renderHTML(post.body)} />
-                                <div className='mt-4 bg-teal-500 h-1 w-16'></div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </Drawer>
+               <Drawer
+               title={
+                   selectedContent ? (
+                       <div className="marquee">
+                           {data.find((post) => post.id === selectedContent)?.title}
+                       </div>
+                   ) : (
+                       "Drawer Title"
+                   )
+               }
+               placement="right"
+               onClose={() => setIsDrawerVisible(false)}
+               visible={isDrawerVisible}
+               width="85%"
+               className="bg-[#1a1a1a] text-white"
+               headerStyle={{
+                   backgroundColor: '#1a1a1a',
+                   borderBottom: '1px solid #333',
+                   padding: '12px 10px',
+               }}
+               bodyStyle={{
+                   backgroundColor: '#1a1a1a',
+                   padding: '12px 0px',
+               }}
+               closeIcon={<CloseOutlined style={{ color: 'white', fontSize: "25px", backgroundColor:"black", padding:"15px", zIndex:"1" }} />}
+           >
+               {selectedContent && (
+                   <div className='bg-[#1c1c1c] px-2 rounded-lg shadow-lg'>
+                       {data.filter((post) => post.id === selectedContent).map((post) => (
+                           <div key={post.id}>
+                               <h2 className='text-2xl text-teal-500 font-semibold mb-4'>
+                                   {post.title}
+                               </h2>
+                               <div className='text-white text-justify' dangerouslySetInnerHTML={renderHTML(post.body)} />
+                               <div className='mt-4 bg-teal-500 h-1 w-16'></div>
+                           </div>
+                       ))}
+                   </div>
+               )}
+           </Drawer>
+           
             )}
         </div>
     );
