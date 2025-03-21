@@ -8,6 +8,7 @@ import EditPost from "../AdminPannelPages/EditPost";
 import PostForm from "../AdminPannelPages/PostForm";
 import DynamicHead from "../utilities/DynamicHead";
 import Product from "../Pages/Product/Product";
+import ProductDetail from "../Pages/Product/ProductDetail";
 // Import the DynamicHead component
 
 export const router = createBrowserRouter([
@@ -53,6 +54,15 @@ export const router = createBrowserRouter([
           <>
             <DynamicHead title="Product Page" faviconUrl="https://cdn-icons-png.flaticon.com/128/18776/18776217.png" />
             <Product />
+          </>
+        ), // Contact Page
+      },
+      {
+        path: "/product/:id",
+        element: (
+          <>
+            <DynamicHead title="Product Page" faviconUrl="https://cdn-icons-png.flaticon.com/128/18776/18776217.png" />
+            <ProductDetail />
           </>
         ), // Contact Page
       },

@@ -1,8 +1,35 @@
-
 import { CalendarDays } from 'lucide-react'
 import { HiHandRaised } from 'react-icons/hi2'
+import { useState } from 'react'
 
 export default function Subscribe() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('sending')
+    
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setEmail('')
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      setStatus('error')
+    }
+  }
+
   return (
     <div className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -12,7 +39,7 @@ export default function Subscribe() {
             <p className="mt-4 text-lg text-gray-300">
               Subscribe!!! You can get our latest post in your mail.
             </p>
-            <div className="mt-6 flex max-w-md gap-x-4">
+            <form onSubmit={handleSubmit} className="mt-6 flex max-w-md gap-x-4">
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
@@ -23,15 +50,24 @@ export default function Subscribe() {
                 required
                 placeholder="Enter your email"
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-500 sm:text-sm/6"
               />
               <button
                 type="submit"
-                className="flex-none rounded-md bg-teal-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-teal-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
+                disabled={status === 'sending'}
+                className="flex-none rounded-md bg-teal-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-teal-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 disabled:opacity-50"
               >
-                Subscribe
+                {status === 'sending' ? 'Subscribing...' : 'Subscribe'}
               </button>
-            </div>
+            </form>
+            {status === 'success' && (
+              <p className="mt-2 text-sm text-green-400">Thanks for subscribing!</p>
+            )}
+            {status === 'error' && (
+              <p className="mt-2 text-sm text-red-400">Something went wrong. Please try again.</p>
+            )}
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-start">

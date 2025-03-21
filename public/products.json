@@ -1,0 +1,84 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Classic Black Tee",
+      "href": "/product/1",
+      "imageSrc": "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
+      "imageAlt": "Front of men's Basic Tee in black.",
+      "price": 35,
+      "color": "Black",
+      "description": "This classic black tee is made from premium cotton for ultimate comfort and durability. Perfect for everyday wear.",
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "features": [
+        "100% Premium Cotton",
+        "Comfortable fit",
+        "Pre-shrunk fabric",
+        "Machine washable"
+      ],
+      "inStock": true,
+      "rating": 4.5,
+      "reviews": 127
+    },
+    {
+      "id": 2,
+      "name": "Navy Blue Polo",
+      "href": "/product/2",
+      "imageSrc": "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg",
+      "imageAlt": "Classic Navy Blue Polo",
+      "price": 45,
+      "color": "Navy Blue",
+      "description": "A sophisticated navy blue polo shirt perfect for both casual and semi-formal occasions.",
+      "sizes": ["S", "M", "L", "XL"],
+      "features": [
+        "Pima cotton blend",
+        "Breathable fabric",
+        "Wrinkle-resistant",
+        "Classic fit"
+      ],
+      "inStock": true,
+      "rating": 4.8,
+      "reviews": 89
+    },
+    {
+      "id": 3,
+      "name": "Gray Hoodie",
+      "href": "/product/3",
+      "imageSrc": "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg",
+      "imageAlt": "Comfortable Gray Hoodie",
+      "price": 65,
+      "color": "Gray",
+      "description": "A cozy and stylish hoodie perfect for those chilly days. Made with premium materials for lasting comfort.",
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "features": [
+        "80% Cotton, 20% Polyester",
+        "Adjustable hood",
+        "Kangaroo pocket",
+        "Ribbed cuffs and hem"
+      ],
+      "inStock": true,
+      "rating": 4.7,
+      "reviews": 156
+    },
+    {
+      "id": 4,
+      "name": "White Tennis Shoes",
+      "href": "/product/4",
+      "imageSrc": "https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg",
+      "imageAlt": "Classic White Tennis Shoes",
+      "price": 89,
+      "color": "White",
+      "description": "Classic white tennis shoes that combine style with comfort. Perfect for both athletic activities and casual wear.",
+      "sizes": ["7", "8", "9", "10", "11", "12"],
+      "features": [
+        "Genuine leather upper",
+        "Cushioned insole",
+        "Non-slip rubber sole",
+        "Breathable mesh lining"
+      ],
+      "inStock": true,
+      "rating": 4.6,
+      "reviews": 203
+    }
+  ]
+}
